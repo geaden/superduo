@@ -36,6 +36,9 @@ public class myFetchService extends IntentService
         super("myFetchService");
     }
 
+    public static final String ACTION_DATA_UPDATED =
+            "barqsoft.footballscores.service.ACTION_DATA_UPDATED";
+
     @Override
     protected void onHandleIntent(Intent intent)
     {
@@ -54,7 +57,7 @@ public class myFetchService extends IntentService
 
         Uri fetch_build = Uri.parse(BASE_URL).buildUpon().
                 appendQueryParameter(QUERY_TIME_FRAME, timeFrame).build();
-        //Log.v(LOG_TAG, "The url we are looking at is: "+fetch_build.toString()); //log spam
+        Log.v(LOG_TAG, "The url we are looking at is: "+fetch_build.toString()); //log spam
         HttpURLConnection m_connection = null;
         BufferedReader reader = null;
         String JSON_data = null;
@@ -70,6 +73,7 @@ public class myFetchService extends IntentService
             InputStream inputStream = m_connection.getInputStream();
             StringBuffer buffer = new StringBuffer();
             if (inputStream == null) {
+                Log.d(LOG_TAG, "Nothing to do.");
                 // Nothing to do.
                 return;
             }
@@ -130,7 +134,20 @@ public class myFetchService extends IntentService
         {
             Log.e(LOG_TAG,e.getMessage());
         }
+        // @Gennady: Call update widgets
+        updateWidgets();
     }
+
+    /**
+     * Updates widgets with relevant data.
+     */
+    private void updateWidgets() {
+        // Setting the package ensures that only components in our app will receive the broadcast
+        Intent dataUpdatedIntent = new Intent(ACTION_DATA_UPDATED)
+                .setPackage(getPackageName());
+        sendBroadcast(dataUpdatedIntent);
+    }
+
     private void processJSONdata (String JSONdata,Context mContext, boolean isReal)
     {
         //JSON data
@@ -248,13 +265,13 @@ public class myFetchService extends IntentService
                     match_values.put(DatabaseContract.scores_table.MATCH_DAY,match_day);
                     //log spam
 
-                    //Log.v(LOG_TAG,match_id);
-                    //Log.v(LOG_TAG,mDate);
-                    //Log.v(LOG_TAG,mTime);
-                    //Log.v(LOG_TAG,Home);
-                    //Log.v(LOG_TAG,Away);
-                    //Log.v(LOG_TAG,Home_goals);
-                    //Log.v(LOG_TAG,Away_goals);
+                    Log.v(LOG_TAG,match_id);
+                    Log.v(LOG_TAG,mDate);
+                    Log.v(LOG_TAG,mTime);
+                    Log.v(LOG_TAG,Home);
+                    Log.v(LOG_TAG,Away);
+                    Log.v(LOG_TAG,Home_goals);
+                    Log.v(LOG_TAG,Away_goals);
 
                     values.add(match_values);
                 }
@@ -272,6 +289,12 @@ public class myFetchService extends IntentService
             Log.e(LOG_TAG,e.getMessage());
         }
 
+    }
+
+    @Override
+    public void onDestroy() {
+        Log.d(LOG_TAG, "Destroyed...");
+        super.onDestroy();
     }
 }
 

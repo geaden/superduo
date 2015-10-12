@@ -39,6 +39,15 @@ public class PagerFragment extends Fragment
         }
         mPagerHandler.setAdapter(mPagerAdapter);
         mPagerHandler.setCurrentItem(MainActivity.current_fragment);
+        // @Gennady: Support library 23.0.1 workaround for sliding tabs
+        // https://code.google.com/p/android/issues/detail?id=183127
+//        mPagerHandler.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                mPagerHandler.setCurrentItem(0);
+//                mPagerHandler.setCurrentItem(MainActivity.current_fragment);
+//            }
+//        });
         return rootView;
     }
     private class myPageAdapter extends FragmentStatePagerAdapter

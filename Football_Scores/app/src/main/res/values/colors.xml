@@ -75,6 +75,8 @@
     <color name="red12">#FFAFAF</color>
     <color name="red13">#FFCACA</color>
     <color name="red14">#FFE4E4</color>
+    <color name="primary_text">@android:color/black</color>
+    <color name="widget_border">#CCC0C0C0</color>
 
 
 </resources>

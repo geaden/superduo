@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Football Score Today Widget -->
+    <dimen name="widget_football_today_score_default_width">110dp</dimen>
+    <dimen name="widget_football_today_score_default_height">60dp</dimen>
+    <dimen name="widget_football_score_min_resize_height">@dimen/widget_football_today_score_default_height</dimen>
+    <dimen name="widget_football_today_score_min_resize_width">80dp</dimen>
+    <dimen name="widget_football_today_score_large_width">220dp</dimen>
+    <dimen name="widget_margin">8dp</dimen>
+    <dimen name="widget_score_text">22dp</dimen>
+    <dimen name="widget_score_date">12dp</dimen>
+    <dimen name="widget_crest_size">45dp</dimen>
+
+    <!-- Football detail widget dimens -->
+    <dimen name="widget_football_detail_default_height">180dp</dimen>
+    <dimen name="widget_football_detail_min_resize_height">320dp</dimen>
+    <dimen name="widget_football_detail_min_resize_width">220dp</dimen>
+    <dimen name="widget_football_detail_default_width">250dp</dimen>
+    <dimen name="widget_team_name_small">12dp</dimen>
+</resources>

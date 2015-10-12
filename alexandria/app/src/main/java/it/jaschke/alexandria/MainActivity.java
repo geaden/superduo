@@ -22,6 +22,7 @@ import it.jaschke.alexandria.api.Callback;
 
 public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks, Callback {
 
+    private static final String CONTAINER_TAG = "container_tag";
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
@@ -57,7 +58,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
         // Set up the drawer.
         navigationDrawerFragment.setUp(R.id.navigation_drawer,
-                    (DrawerLayout) findViewById(R.id.drawer_layout));
+                (DrawerLayout) findViewById(R.id.drawer_layout));
     }
 
     @Override
@@ -80,6 +81,14 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
         }
 
+        // @Gennady: Remove right container content if applicable
+        if (findViewById(R.id.right_container) != null) {
+            Fragment f = fragmentManager.findFragmentByTag(CONTAINER_TAG);
+            if (null != f) {
+                fragmentManager.beginTransaction().remove(f).commit();
+            }
+        }
+
         fragmentManager.beginTransaction()
                 .replace(R.id.container, nextFragment)
                 .addToBackStack((String) title)
@@ -94,6 +103,8 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
         actionBar.setTitle(title);
     }
 
@@ -134,19 +145,15 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
     @Override
     public void onItemSelected(String ean) {
-        Bundle args = new Bundle();
-        args.putString(BookDetail.EAN_KEY, ean);
-
-        BookDetail fragment = new BookDetail();
-        fragment.setArguments(args);
+        BookDetail fragment = BookDetail.newInstance(ean);
 
         int id = R.id.container;
         if(findViewById(R.id.right_container) != null){
             id = R.id.right_container;
         }
         getSupportFragmentManager().beginTransaction()
-                .replace(id, fragment)
-                .addToBackStack("Book Detail")
+                .replace(id, fragment, CONTAINER_TAG)
+                .addToBackStack(getString(R.string.book_detail))
                 .commit();
 
     }
