@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -67,6 +68,12 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
 
             @Override
             public void afterTextChanged(Editable s) {
+                // @Gennady: check for network availability
+                if (!Utility.isNetworkAvailable(getActivity())) {
+                    Toast.makeText(getActivity(), R.string.network_not_available,
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 String ean = s.toString();
                 //catch isbn10 numbers
                 if (ean.length() == 10 && !ean.startsWith(getString(R.string.ean_start))) {
@@ -109,6 +116,12 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
         rootView.findViewById(R.id.delete_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // @Gennady: check for network availability
+                if (!Utility.isNetworkAvailable(getActivity())) {
+                    Toast.makeText(getActivity(), R.string.network_not_available,
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent bookIntent = new Intent(getActivity(), BookService.class);
                 bookIntent.putExtra(BookService.EAN, ean.getText().toString());
                 bookIntent.setAction(BookService.DELETE_BOOK);

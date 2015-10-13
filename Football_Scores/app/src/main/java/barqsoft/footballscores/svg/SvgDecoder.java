@@ -1,14 +1,14 @@
 package barqsoft.footballscores.svg;
 
 
-    import com.bumptech.glide.load.ResourceDecoder;
-    import com.bumptech.glide.load.engine.Resource;
-    import com.bumptech.glide.load.resource.SimpleResource;
-    import com.caverock.androidsvg.SVG;
-    import com.caverock.androidsvg.SVGParseException;
+import com.bumptech.glide.load.ResourceDecoder;
+import com.bumptech.glide.load.engine.Resource;
+import com.bumptech.glide.load.resource.SimpleResource;
+import com.caverock.androidsvg.SVG;
+import com.caverock.androidsvg.SVGParseException;
 
-    import java.io.IOException;
-    import java.io.InputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Decodes an SVG internal representation from an {@link InputStream}.

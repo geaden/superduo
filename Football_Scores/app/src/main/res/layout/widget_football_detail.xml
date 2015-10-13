@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:contentDescription="@string/app_name"
             android:padding="@dimen/abc_control_padding_material"
-            android:layout_gravity="left|center_vertical"
+            android:layout_gravity="start|center_vertical"
             android:src="@drawable/ic_launcher"/>
         <TextView
             android:layout_width="match_parent"

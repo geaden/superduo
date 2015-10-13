@@ -2,14 +2,18 @@
 
 ## Alexandria
 
+- [x] Add check for network connection availability.
 - [x] Alexandria has barcode scanning functionality.
 - [x] The two errors mentioned in the UX review are handled.
 - [x] Alexandria’s barcode scanning functionality does not require the installation of a separate app on first use.
 - [x] Extra error cases are found, accounted for, and called out in code comments.
-- [x] Check tablet layout
+- [x] Check tablet layout.
 
 ## Footbal Scores
 
+- [x] Make proper nouns untranslatable
+- [x] Move API key to Contstants 
+- [x] Add additional layout mirroring for Football Scores.
 - [x] Footbal API key placed in strings.xml
 - [x] Football Scores can be displayed in a widget.
 - [x] Football Scores app has content descriptions for all buttons, images, and text.

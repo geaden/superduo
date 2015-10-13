@@ -22,6 +22,7 @@ import java.util.Date;
 import java.util.TimeZone;
 import java.util.Vector;
 
+import barqsoft.footballscores.Constants;
 import barqsoft.footballscores.DatabaseContract;
 import barqsoft.footballscores.R;
 
@@ -66,7 +67,7 @@ public class myFetchService extends IntentService
             URL fetch = new URL(fetch_build.toString());
             m_connection = (HttpURLConnection) fetch.openConnection();
             m_connection.setRequestMethod("GET");
-            m_connection.addRequestProperty("X-Auth-Token",getString(R.string.api_key));
+            m_connection.addRequestProperty("X-Auth-Token", Constants.API_KEY);
             m_connection.connect();
 
             // Read the input stream into a String
