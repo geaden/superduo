@@ -1,6 +1,14 @@
 # SuperDuo
 
+A study project to productionize Android applications.
+
+Part of [Udacity&trade;](https://www.udacity.com) Android Nanodegree Program.
+
 ## Alexandria
+
+Reading application.
+
+Changes are made:
 
 - [x] Add check for network connection availability.
 - [x] Alexandria has barcode scanning functionality.
@@ -10,6 +18,10 @@
 - [x] Check tablet layout.
 
 ## Footbal Scores
+
+Scoring application to display latest scores of Football leagues. Requires API.
+
+Changes are made:
 
 - [x] Make proper nouns untranslatable
 - [x] Move API key to Contstants 
